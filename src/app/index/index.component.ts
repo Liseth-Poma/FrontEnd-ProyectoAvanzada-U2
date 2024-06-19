@@ -33,6 +33,6 @@ export class IndexComponent {
 
   goToFormulario() {
     // Redirigir a la página de formulario
-    this.router.navigate(['/formulario']);
+    this.router.navigate(['/videojuego-form']);
   }
 }

@@ -20,6 +20,6 @@ export class NavbarComponent {
     this.router.navigate(['/', 'catalogo']);
   }
   goToFormulario() {
-    this.router.navigate(['/', 'formulario']);
+    this.router.navigate(['/', 'videojuego-form']);
   }
 }

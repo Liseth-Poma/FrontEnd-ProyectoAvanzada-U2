@@ -2,13 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
+import { NavbarComponent } from '../navbar/navbar.component';
 import Swal from 'sweetalert2';
 
 
 @Component({
     selector: 'app-videojuego-form',
     standalone: true,
-    providers: [FormBuilder],
+    providers: [FormBuilder, NavbarComponent],
     templateUrl: './videojuego-form.component.html',
     styleUrl: './videojuego-form.component.css',
     imports: [ReactiveFormsModule, FormsModule, CommonModule, RecaptchaModule, RecaptchaFormsModule]
