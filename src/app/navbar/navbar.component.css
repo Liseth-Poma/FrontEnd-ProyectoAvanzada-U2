@@ -6,7 +6,9 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-
+.nav-margin {
+  margin-top: 56px; /* o cualquier otro valor que desees */
+}
 body {
   overflow: hidden;
 }

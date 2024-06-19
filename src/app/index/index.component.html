@@ -1,1 +1,48 @@
 <app-navbar></app-navbar>
+
+<!-- Hero Section -->
+<section class="hero hero-custom">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h1>Bienvenido a Game Galaxy</h1>
+        <p>La tienda de videojuegos más grande del país</p>
+        <button class="btn btn-primary" (click)="goToCatalogo()">Explorar nuestros juegos</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Games Section -->
+<section class="featured-games">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2>Juegos destacados</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4" *ngFor="let game of featuredGames">
+        <div class="game-card">
+          <img [src]="game.image" alt="Imagen del juego" class="img-fluid">
+          <h3>{{ game.name }}</h3>
+          <p>{{ game.description }}</p>
+          <button class="btn btn-primary" (click)="goToFormulario()">Comprar ahora</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="call-to-action">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2>¿Qué estás esperando?</h2>
+        <p>Registra tu cuenta y comienza a explorar nuestros juegos</p>
+        <button class="btn btn-primary" (click)="goToFormulario()">Registrarse</button>
+      </div>
+    </div>
+  </div>
+</section>
