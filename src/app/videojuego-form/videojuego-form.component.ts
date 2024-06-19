@@ -3,15 +3,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 import Swal from 'sweetalert2';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 
 @Component({
     selector: 'app-videojuego-form',
     standalone: true,
-    providers: [FormBuilder],
+    providers: [FormBuilder, NavbarComponent],
     templateUrl: './videojuego-form.component.html',
     styleUrl: './videojuego-form.component.css',
-    imports: [ReactiveFormsModule, FormsModule, CommonModule, RecaptchaModule, RecaptchaFormsModule]
+    imports: [ReactiveFormsModule, FormsModule, CommonModule, RecaptchaModule, RecaptchaFormsModule, NavbarComponent]
 })
 export class VideojuegoFormComponent implements OnInit{
 
@@ -40,7 +41,7 @@ export class VideojuegoFormComponent implements OnInit{
       codigo: [''],
       subtotal: [{ value: '', disabled: true }, Validators.required],
       total: [{ value: '', disabled: true }, Validators.required],
-      
+
     });
   }
 
@@ -92,7 +93,7 @@ export class VideojuegoFormComponent implements OnInit{
       this.form.get('precio')?.disable();
       this.form.get('subtotal')?.disable();
       this.form.get('total')?.disable();
-    
+
     } else {
       this.form.markAllAsTouched();
     }
