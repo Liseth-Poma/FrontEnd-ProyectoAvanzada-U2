@@ -1,47 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-.nav-margin {
-  margin-top: 56px; /* o cualquier otro valor que desees */
-}
-body {
-  overflow: hidden;
-}
-
 .sidebar {
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
-  width: 170px;
+  width: 185px;
   background: #3c6d3e;
   z-index: 100;
   transition: all 0.5s ease;
 }
 
 .sidebar .logo-details {
-  height: 60px;
-  width: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
+  padding: 15px 0;
+  position: relative;
 }
 
-.sidebar .logo-details i {
-  font-size: 30px;
-  color: #fff;
-  height: 50px;
-  min-width: 78px;
-  text-align: center;
-  line-height: 50px;
+.sidebar .logo-details img {
+  height: auto;
+  max-height: 80px;
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .sidebar .logo-details .logo_name {
-  margin: 70px 0 0 15px;
+  margin-top: 70px;
   font-size: 22px;
   color: #fff;
   font-weight: 600;
@@ -101,48 +90,26 @@ body {
 .sidebar .profile-details {
   position: fixed;
   bottom: 0;
-  width: 170px; /* Ajustar según el ancho de la barra de navegación */
+  width: 185px; /* Ajustado al ancho de la barra lateral */
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background: #1d1b31;
+  justify-content: center;
+  background: #3c6d3e;
   padding: 12px 0;
   transition: all 0.5s ease;
 }
 
-.sidebar .profile-details .profile-content {
+.sidebar .profile-details .social-icons {
   display: flex;
-  align-items: center;
+  gap: 10px; /* Espacio entre los íconos */
 }
 
-.sidebar .profile-details img {
-  height: 52px;
-  width: 52px;
-  object-fit: cover;
-  border-radius: 16px;
-  margin: 0 14px 0 12px;
-  background: #1d1b31;
-  transition: all 0.5s ease;
-}
-
-.sidebar .profile-details .profile_name,
-.sidebar .profile-details .job {
+.sidebar .profile-details .social-icons a {
   color: #fff;
-  font-size: 18px;
-  font-weight: 500;
-  white-space: nowrap;
+  font-size: 20px;
+  transition: color 0.3s ease;
 }
 
-.sidebar .profile-details .job {
-  font-size: 12px;
-}
-
-/* Ajustes responsivos */
-@media screen and (max-width: 400px) {
-  .sidebar {
-    width: 240px;
-  }
-  .sidebar .profile-details {
-    width: 240px;
-  }
+.sidebar .profile-details .social-icons a:hover {
+  color: #1d1b31;
 }

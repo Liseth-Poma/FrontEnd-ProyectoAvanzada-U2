@@ -6,6 +6,11 @@
   justify-content: center;
 }
 
+.table-resposive
+{
+  margin-left: 375px;
+}
+
 .game-card {
   background-color: #FFFFFF; /* Tarjeta blanca */
   border: 1px solid #CCCCCC; /* Borde gris claro */
