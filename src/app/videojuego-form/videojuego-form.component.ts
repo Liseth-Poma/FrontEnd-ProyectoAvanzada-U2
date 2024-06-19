@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
     providers: [FormBuilder, NavbarComponent],
     templateUrl: './videojuego-form.component.html',
     styleUrl: './videojuego-form.component.css',
-    imports: [ReactiveFormsModule, FormsModule, CommonModule, RecaptchaModule, RecaptchaFormsModule]
+    imports: [ReactiveFormsModule, FormsModule, CommonModule, RecaptchaModule, RecaptchaFormsModule, NavbarComponent]
 })
 export class VideojuegoFormComponent implements OnInit{
 
@@ -41,7 +41,7 @@ export class VideojuegoFormComponent implements OnInit{
       codigo: [''],
       subtotal: [{ value: '', disabled: true }, Validators.required],
       total: [{ value: '', disabled: true }, Validators.required],
-      
+
     });
   }
 
@@ -93,7 +93,7 @@ export class VideojuegoFormComponent implements OnInit{
       this.form.get('precio')?.disable();
       this.form.get('subtotal')?.disable();
       this.form.get('total')?.disable();
-    
+
     } else {
       this.form.markAllAsTouched();
     }

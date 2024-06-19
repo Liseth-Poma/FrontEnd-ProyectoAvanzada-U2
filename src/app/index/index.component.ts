@@ -15,12 +15,13 @@ export class IndexComponent {
   }
   featuredGames = [
     {
-      image: 'https://example.com/game1.jpg',
       name: 'The Last of Us',
-      description: 'Un juego de supervivencia en un mundo post-apocalíptico'
+      image: 'https://uvejuegos.com/img/caratulas/46761/TLOU%20Francia.jpg',
+      description: 'Un juego de supervivencia en un mundo post-apocalíptico',
+      
     },
     {
-      image: 'https://example.com/game2.jpg',
+      image: 'https://ecuadorjuegosdigitales.com/wp-content/uploads/2022/10/1643412757-god-of-war-ragnarok-ps4-pre-orden.jpg',
       name: 'God of War',
       description: 'Un juego de acción y aventura en un mundo mitológico'
     },
