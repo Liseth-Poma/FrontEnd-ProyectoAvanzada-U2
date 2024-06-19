@@ -22,6 +22,7 @@
   flex-direction: column;
   align-items: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  margin-bottom: 20px; /* Margen inferior entre tarjetas */
 }
 
 .game-card img {
