@@ -1,0 +1,71 @@
+
+<div class="form-container">
+  <h2>Game Galaxi</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="nombre">Nombre Cliente:</label>
+      <input type="text" id="nombre" formControlName="nombre">
+      <div *ngIf="form.get('nombre')?.errors && form.get('nombre')?.touched" class="error-message">
+        <small *ngIf="form.get('nombre')?.hasError('required')">Este es un campo requerido</small>
+        <small *ngIf="form.get('nombre')?.hasError('pattern')">Debe contener solo letras, entre 3 y 15 caracteres</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="correo">Correo:</label>
+      <input type="email" id="correo" formControlName="correo">
+      <div *ngIf="form.get('correo')?.errors && form.get('correo')?.touched" class="error-message">
+        <small *ngIf="form.get('correo')?.hasError('required')">Este es un campo requerido</small>
+        <small *ngIf="form.get('correo')?.hasError('pattern')">Debe ser un correo válido de Gmail</small>
+        <small *ngIf="form.get('correo')?.hasError('minlength')">Debe tener al menos 10 caracteres</small>
+        <small *ngIf="form.get('correo')?.hasError('maxlength')">No puede tener más de 50 caracteres</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="telefono">Teléfono:</label>
+      <input type="tel" id="telefono" formControlName="telefono">
+      <div *ngIf="form.get('telefono')?.errors && form.get('telefono')?.touched" class="error-message">
+        <small *ngIf="form.get('telefono')?.hasError('required')">Este es un campo requerido</small>
+        <small *ngIf="form.get('telefono')?.hasError('pattern')">Debe contener exactamente 10 dígitos y solo números</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="videojuego">Videojuego:</label>
+      <select id="videojuego" formControlName="videojuego">
+        <option *ngFor="let juego of (precios | keyvalue)" [value]="juego.key">{{ juego.key }}</option>
+      </select>
+      <div *ngIf="form.get('videojuego')?.errors && form.get('videojuego')?.touched" class="error-message">
+        <small *ngIf="form.get('videojuego')?.hasError('required')">Este es un campo requerido</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="precio">Precio:</label>
+      <input type="number" id="precio" formControlName="precio" readonly>
+    </div>
+    <div class="form-group">
+      <label for="codigo">Código de Descuento:</label>
+      <input type="text" id="codigo" formControlName="codigo">
+      <div *ngIf="form.get('codigo')?.errors && form.get('codigo')?.touched" class="error-message">
+        <small *ngIf="form.get('codigo')?.hasError('invalidCode')">Ese no es el código de descuento válido</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="subtotal">Subtotal:</label>
+      <input type="number" id="subtotal" formControlName="subtotal" readonly>
+    </div>
+    <div class="form-group">
+      <label for="total">Total:</label>
+      <input type="number" id="total" formControlName="total" readonly>
+    </div>
+    <p>
+      Términos y Condiciones
+    </p>
+    <p>
+      <re-captcha #captchaRef (resolved)="resolved($event)" siteKey="6LeytfYpAAAAAH0lvhZb5DGSj0UAxiRtLdq-4eWt"></re-captcha>
+    </p>
+    <div *ngIf="!captchaValid && form.get('captcha')?.touched" class="error-message">
+      <small>Completa la reCAPTCHA</small>
+    </div>
+    <br>
+    <button type="submit" [disabled]="form.invalid || !captchaValid" class="submit-button">ENVIAR COMPRA</button>
+  </form>
+</div>
