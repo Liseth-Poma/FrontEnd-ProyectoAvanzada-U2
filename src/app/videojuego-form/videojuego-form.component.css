@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&display=swap');
+
 .form-container {
   max-width: 600px;
   margin: 20px auto;
@@ -10,10 +12,13 @@
 
 h1, h2 {
   text-align: center;
-  font-family: 'Arial', sans-serif;
+  font-family: "Jaro", sans-serif;
   color: #333;
 }
 
+.formulario{
+  margin-left: 50px;
+}
 .form-group {
   margin-bottom: 15px;
   display: flex;
@@ -42,6 +47,11 @@ h1, h2 {
 .form-group input:last-child,
 .form-group select:last-child {
   margin-right: 0;
+}
+
+.ter{
+  color: #555;
+  font-weight: bold;
 }
 
 .form-group input:focus,

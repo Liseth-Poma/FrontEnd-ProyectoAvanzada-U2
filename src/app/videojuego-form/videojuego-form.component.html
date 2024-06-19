@@ -3,7 +3,7 @@
 <app-navbar></app-navbar>
 <div class="form-container formulaiocontenedor">
   <h2>Game Galaxy</h2>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="formulario">
     <div class="form-group">
       <label for="nombre">Nombre Cliente:</label>
       <input type="text" id="nombre" formControlName="nombre">
@@ -58,8 +58,8 @@
       <label for="total">Total:</label>
       <input type="number" id="total" formControlName="total" readonly>
     </div>
-    <p>
-      Términos y Condiciones: 
+    <p class="ter">
+      Términos y Condiciones:
     </p>
     <p>
       <re-captcha #captchaRef (resolved)="resolved($event)" siteKey="6LeytfYpAAAAAH0lvhZb5DGSj0UAxiRtLdq-4eWt"></re-captcha>
