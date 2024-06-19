@@ -1,1 +1,15 @@
-<p>catalogo works!</p>
+<app-navbar></app-navbar>
+<div class="container nav-margin">
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-3" *ngFor="let game of games">
+        <div class="game-card">
+          <img [src]="game.image" alt="Imagen del juego" class="img-fluid">
+          <h2>{{ game.name }}</h2>
+          <p>{{ game.description }}</p>
+          <button class="btn btn-primary">Comprar ahora</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

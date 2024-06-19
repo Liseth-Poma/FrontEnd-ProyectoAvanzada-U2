@@ -63,7 +63,7 @@
       <re-captcha #captchaRef (resolved)="resolved($event)" siteKey="6LeytfYpAAAAAH0lvhZb5DGSj0UAxiRtLdq-4eWt"></re-captcha>
     </p>
     <div *ngIf="!captchaValid && form.get('captcha')?.touched" class="error-message">
-      <small>Completa la reCAPTCHA</small>
+      <small>Completa la reCAPTCHA!</small>
     </div>
     <br>
     <button type="submit" [disabled]="form.invalid || !captchaValid" class="submit-button">ENVIAR COMPRA</button>
