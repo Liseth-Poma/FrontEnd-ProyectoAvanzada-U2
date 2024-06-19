@@ -18,7 +18,7 @@
 }
 
 .hero button {
-    background-color: #34C759;
+    background-color: #3c6d3e;
     color: #FFFFFF;
     border: none;
     padding: 10px 20px;
@@ -72,7 +72,7 @@
 }
 
 .game-card button {
-    background-color: #34C759;
+    background-color: #3c6d3e;
     color: #FFFFFF;
     border: none;
     padding: 10px 20px;
@@ -83,7 +83,7 @@
 
 /* Call to Action Section */
 .call-to-action {
-    background-color: #34C759;
+    background-color: #3c6d3e;
     color: #FFFFFF;
     padding: 20px;
     text-align: center;
@@ -97,7 +97,7 @@
 
 .call-to-action button {
     background-color: #FFFFFF;
-    color: #34C759;
+    color: #3c6d3e;
     border: none;
     padding: 10px 20px;
     font-size: 16px;

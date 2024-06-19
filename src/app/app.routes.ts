@@ -19,7 +19,7 @@ export const routes: Routes = [
     component: CatalogoComponent,
   },
   {
-    path: 'formulario',
+    path: 'videojuego-form',
     component: VideojuegoFormComponent,
   },
 ];
