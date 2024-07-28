@@ -24,6 +24,7 @@ export class VideojuegoFormComponent implements OnInit {
   precios: { [key: string]: number } = {};
   captchaValid: boolean = false;
   videojuegos: any[] = [];
+  descuentoActual: any = null; // Variable para almacenar el descuento actual
 
   constructor(
     private fb: FormBuilder,
@@ -61,53 +62,42 @@ export class VideojuegoFormComponent implements OnInit {
         const precio = selectedVideojuego ? selectedVideojuego.precio : 0;
         this.form.get('precio')?.setValue(precio);
         this.form.get('idVideojuego')?.setValue(selectedVideojuego ? selectedVideojuego._id : ''); // Guardar el ID del videojuego
-        this.actualizarTotal();
+        this.actualizarTotal(); // Llamar a actualizarTotal al cambiar el videojuego
       }
     });
 
     this.form.get('codigoDescuento')?.valueChanges.pipe(
-      debounceTime(1000), // Retraso de 1000 ms
+      debounceTime(1500), // Retraso de 1000 ms
       distinctUntilChanged(), // Emitir solo si el valor ha cambiado
-      
       switchMap(codigoDescuento => {
-        console.log("entramos al codigo desc")
         if (codigoDescuento) {
-          console.log(codigoDescuento)
           return this.cargaritemsService.getDescuentoByCodigo(codigoDescuento);
         } else {
           return of(null); // Retornar null si no hay código
         }
       })
     ).subscribe(descuento => {
-      const precio = this.form.get('precio')?.value;
-      let subtotal = precio;
-
-      if (descuento) {
-        subtotal *= (1 - descuento.porcentaje / 100);
-        this.form.get('codigoDescuento')?.setErrors(null); // Eliminar errores si el código es válido
-      } else {
-        this.form.get('codigoDescuento')?.setErrors({ invalidCode: true });
-      }
-
-      this.form.get('subtotal')?.setValue(subtotal);
-      this.form.get('total')?.setValue(subtotal);
+      this.descuentoActual = descuento; // Guardar el descuento actual
+      this.actualizarTotal(); // Actualizar total y subtotal
     }, err => {
-      const precio = this.form.get('precio')?.value;
-      this.form.get('codigoDescuento')?.setErrors({ invalidCode: true });
-      this.form.get('subtotal')?.setValue(precio);
-      this.form.get('total')?.setValue(precio);
+      this.descuentoActual = null; // Limpiar el descuento actual en caso de error
+      this.actualizarTotal(); // Actualizar total y subtotal
     });
   }
 
   actualizarTotal(): void {
     const precio = this.form.get('precio')?.value;
     let subtotal = precio;
-    const codigoDescuento = this.form.get('codigoDescuento')?.value;
 
-    if (!codigoDescuento) {
-      this.form.get('subtotal')?.setValue(subtotal);
-      this.form.get('total')?.setValue(subtotal);
+    if (this.descuentoActual) {
+      subtotal *= (1 - this.descuentoActual.porcentaje / 100);
+      this.form.get('codigoDescuento')?.setErrors(null); // Eliminar errores si el código es válido
+    } else if (this.form.get('codigoDescuento')?.value) {
+      this.form.get('codigoDescuento')?.setErrors({ invalidCode: true });
     }
+
+    this.form.get('subtotal')?.setValue(subtotal);
+    this.form.get('total')?.setValue(subtotal);
   }
 
   resolved(captchaResponse: string | null) {
