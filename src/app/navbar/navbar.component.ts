@@ -22,4 +22,7 @@ export class NavbarComponent {
   goToFormulario() {
     this.router.navigate(['/', 'videojuego-form']);
   }
+  goToClientes() {
+    this.router.navigate(['/', 'ListarClientes']);
+  }
 }

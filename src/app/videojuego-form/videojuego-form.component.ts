@@ -67,7 +67,7 @@ export class VideojuegoFormComponent implements OnInit {
     });
 
     this.form.get('codigoDescuento')?.valueChanges.pipe(
-      debounceTime(1000), // Retraso de 1000 ms
+      debounceTime(2000), // Retraso de 1000 ms
       distinctUntilChanged(), // Emitir solo si el valor ha cambiado
       switchMap(codigoDescuento => {
         if (codigoDescuento) {

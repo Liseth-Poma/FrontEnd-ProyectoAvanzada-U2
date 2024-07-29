@@ -1,0 +1,17 @@
+.contenedor {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 200px; /* Adjust this margin as needed for the sidebar */
+  margin-right: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+@media (max-width: 768px) {
+  .contenedor {
+    margin-left: 0; /* Remove left margin for smaller screens */
+    margin-right: 0;
+  }
+}

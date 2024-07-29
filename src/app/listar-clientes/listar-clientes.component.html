@@ -1,0 +1,82 @@
+<app-navbar></app-navbar>
+<div class="container p-4 contenedor">
+  <h1 class="text-3xl font-bold mb-6 text-green-800 text-center">
+    Lista de Clientes
+  </h1>
+  <div class="overflow-x-auto bg-gray-50 rounded-lg shadow-md">
+    <table class="min-w-full bg-white rounded-lg">
+      <thead>
+        <tr class="bg-green-800 text-white text-left">
+          <th
+            class="px-6 py-3 border-b-2 border-gray-200 text-sm font-semibold"
+          >
+            Nombre
+          </th>
+          <th
+            class="px-6 py-3 border-b-2 border-gray-200 text-sm font-semibold"
+          >
+            Cédula
+          </th>
+          <th
+            class="px-6 py-3 border-b-2 border-gray-200 text-sm font-semibold"
+          >
+            Email
+          </th>
+          <th
+            class="px-6 py-3 border-b-2 border-gray-200 text-sm font-semibold"
+          >
+            Teléfono
+          </th>
+          <th
+            class="px-6 py-3 border-b-2 border-gray-200 text-sm font-semibold"
+          >
+            Código de Descuento
+          </th>
+          <th
+            class="px-6 py-3 border-b-2 border-gray-200 text-sm font-semibold"
+          >
+            Total
+          </th>
+          <th
+            class="px-6 py-3 border-b-2 border-gray-200 text-sm font-semibold"
+          >
+            Subtotal
+          </th>
+          <th
+            class="px-6 py-3 border-b-2 border-gray-200 text-sm font-semibold"
+          >
+            Precio
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientes" class="hover:bg-gray-100">
+          <td class="px-6 py-4 border-b border-gray-200 text-sm">
+            {{ cliente.nombre }}
+          </td>
+          <td class="px-6 py-4 border-b border-gray-200 text-sm">
+            {{ cliente.cedula }}
+          </td>
+          <td class="px-6 py-4 border-b border-gray-200 text-sm">
+            {{ cliente.email }}
+          </td>
+          <td class="px-6 py-4 border-b border-gray-200 text-sm">
+            {{ cliente.telefono }}
+          </td>
+          <td class="px-6 py-4 border-b border-gray-200 text-sm">
+            {{ cliente.codigoDescuento }}
+          </td>
+          <td class="px-6 py-4 border-b border-gray-200 text-sm">
+            {{ cliente.total }}
+          </td>
+          <td class="px-6 py-4 border-b border-gray-200 text-sm">
+            {{ cliente.subtotal }}
+          </td>
+          <td class="px-6 py-4 border-b border-gray-200 text-sm">
+            {{ cliente.precio }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

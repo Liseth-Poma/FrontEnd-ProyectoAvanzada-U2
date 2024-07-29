@@ -3,6 +3,7 @@ import { VideojuegoFormComponent } from './videojuego-form/videojuego-form.compo
 import { NgModule } from '@angular/core';
 import { IndexComponent } from './index/index.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
+import { ListarClientesComponent } from './listar-clientes/listar-clientes.component';
 
 export const routes: Routes = [
   {
@@ -22,6 +23,11 @@ export const routes: Routes = [
     path: 'videojuego-form',
     component: VideojuegoFormComponent,
   },
+  {
+    path: 'ListarClientes',
+    component: ListarClientesComponent,
+  },
+
 ];
 
 @NgModule({
