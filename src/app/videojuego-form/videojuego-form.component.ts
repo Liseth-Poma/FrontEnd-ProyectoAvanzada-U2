@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -32,9 +32,9 @@ export class VideojuegoFormComponent implements OnInit {
     private cargaritemsService: CargaritemsService
   ) {
     this.form = this.fb.group({
-      nombre: ['', [Validators.required, Validators.pattern('^[a-zA-Z]{3,50}$')]],
-      email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@gmail\\.com$'), Validators.minLength(10), Validators.maxLength(50)]],
-      cedula: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      nombre: ['', [Validators.required, Validators.pattern('^[A-Za-zÁÉÍÓÚÑáéíóúñ\\s]{3,50}$')]],
+      email: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(50)]],
+      cedula: ['', [Validators.required, this.validateEcuadorianCedula]],
       telefono: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       videojuego: ['', Validators.required],
       idVideojuego: [''], // Campo oculto para el ID del videojuego
@@ -67,7 +67,7 @@ export class VideojuegoFormComponent implements OnInit {
     });
 
     this.form.get('codigoDescuento')?.valueChanges.pipe(
-      debounceTime(1500), // Retraso de 1000 ms
+      debounceTime(1000), // Retraso de 1000 ms
       distinctUntilChanged(), // Emitir solo si el valor ha cambiado
       switchMap(codigoDescuento => {
         if (codigoDescuento) {
@@ -98,6 +98,49 @@ export class VideojuegoFormComponent implements OnInit {
 
     this.form.get('subtotal')?.setValue(subtotal);
     this.form.get('total')?.setValue(subtotal);
+  }
+
+  validateEcuadorianCedula(control: AbstractControl): ValidationErrors | null {
+    const cedula = control.value;
+    if (!cedula) {
+      return null;
+    }
+
+    if (cedula.length !== 10) {
+      return { invalidCedula: true };
+    }
+
+    const digito_region = cedula.substring(0, 2);
+    if (digito_region < 1 || digito_region > 24) {
+      return { invalidCedula: true };
+    }
+
+    const ultimo_digito = parseInt(cedula.substring(9, 10));
+    const pares = parseInt(cedula.substring(1, 2)) +
+                  parseInt(cedula.substring(3, 4)) +
+                  parseInt(cedula.substring(5, 6)) +
+                  parseInt(cedula.substring(7, 8));
+
+    const getImparesSum = (cedula: string) => {
+      let sum = 0;
+      for (let i = 0; i < 9; i += 2) {
+        let num = parseInt(cedula.charAt(i)) * 2;
+        sum += num > 9 ? num - 9 : num;
+      }
+      return sum;
+    };
+
+    const impares = getImparesSum(cedula);
+    const suma_total = pares + impares;
+    const primer_digito_suma = parseInt(String(suma_total).substring(0, 1));
+    const decena = (primer_digito_suma + 1) * 10;
+    const digito_validador = decena - suma_total === 10 ? 0 : decena - suma_total;
+
+    if (digito_validador === ultimo_digito) {
+      return null;
+    } else {
+      return { invalidCedula: true };
+    }
   }
 
   resolved(captchaResponse: string | null) {
